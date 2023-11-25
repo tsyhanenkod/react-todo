@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 
 function TodoForm({ todos, setTodos }) {
-
-    const [todo, setTodo] = useState({
+    const initialState = {
         id: '',
         message: '',
-    }); 
+    }
 
+    const [todo, setTodo] = useState(initialState); 
+    
     const handleChange = e => {
         setTodo({ id: Date.now(), message:  e.target.value});
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        setTodos([ ...todos, todo ]);
+        setTodos([ todo, ...todos ]);
+        setTodo(initialState)
     }
 
     return (
